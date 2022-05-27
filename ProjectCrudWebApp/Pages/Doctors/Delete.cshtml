@@ -1,0 +1,27 @@
+﻿@page "{id}"
+@model ProjectCrudWebApp.Pages.Doctors.DeleteModel
+@{
+}
+<h3> Doctor to Delete Id-(@Model.Id)</h3>
+<br/>
+<form method="post" class="text-center">
+    <div class="form-group">
+        <h5> Are you sure you want to delete doctor - @Model.DoctorName ?</h5>
+    </div>
+    <div class = "form-group">
+        <h6 class = "text-success" >@Model.SuccessMessage </h6>
+        <h6 class = "text-success" >@Model.ErrorMessage</h6>
+        <h5 class="text-danger">@Html.ValidationSummary()</h5>
+    </div>
+    <div>
+        @if (Model.ShowButton)
+        {
+            <button type="submit" class="btn btn-danger col-sm-3">Delete</button>        
+            <a href="/Doctors/List" class="btn btn-light col-sm-3" role="button">Cancel</a>
+        }
+        else
+        {
+            <a href="/Doctors/List" class="btn btn-primary col-sm-3" role="button">Back</a>
+        }
+    </div>
+</form>

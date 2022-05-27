@@ -1,0 +1,59 @@
+﻿@page
+@model ProjectCrudWebApp.Pages.Patients.AddModel
+@{
+}
+<h3>Add New Patient </h3>
+<form method="post">
+
+    <div class="form-group">
+        <label asp-for="@Model.Name"></label>
+        <input asp-for="@Model.Name" class="form-control" />
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="@Model.DOB"></label>
+        <input asp-for="@Model.DOB" class="form-control" />
+    </div>
+    
+    <div class="form-group">
+       <label >Select the gender</label>
+       <div class="form-check">
+       @foreach(var g in @Model.Genders)
+        {
+            <input type="radio"  asp-for="@Model.Gender" value="@g"/>
+           
+       @g <br />
+        }
+        </div>
+    </div>
+     <div class="form-group">
+        <label asp-for="@Model.MobileNumber"></label>
+        <input asp-for="@Model.MobileNumber" class="form-control" />
+    </div>
+    <div class="form-group">
+    <div class="form-group">
+        <label asp-for="@Model.Address"></label>
+        <input asp-for="@Model.Address" class="form-control" />
+    </div>
+    <div class="form-group">
+     <div class="form-group">
+        <label asp-for="@Model.email"></label>
+        <input asp-for="@Model.email" class="form-control" />
+    </div>
+    <div class="form-group">
+         <div class="form-group">
+        <label asp-for="@Model.Password"></label>
+        <input asp-for="@Model.Password" class="form-control" />
+    </div>
+    <div class="form-group">
+     <div class="form-group">
+        <h5 class="text-success">@Model.SuccessMessage</h5>
+        <h5 class="text-danger">@Model.ErrorMessage</h5>
+        <h5 class="text-danger">@Html.ValidationSummary()</h5>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-success ">SAVE</button>
+        <a href="/Patients/List" class="btn btn-light" role="button">CANCEL</a>
+    </div>
+
+</form>

@@ -1,0 +1,39 @@
+﻿@page
+@model ProjectCrudWebApp.Pages.Appointments.AddModel
+@{
+}
+
+<h3>Manage Appointments </h3>
+<form method="post">
+     <div class="form-group">
+        <label asp-for="@Model.SelectedPatientId"></label>
+        <select asp-for="@Model.SelectedPatientId"  asp-items="@Model.PatientList"  class="form-select"></select>
+    </div>
+    <div class="form-group">
+            <label asp-for="@Model.SelectedDoctorId"></label>
+            <select asp-for="@Model.SelectedDoctorId" asp-items="@Model.DoctorList" class="form-select"></select>
+     </div>
+   
+
+     <div class="form-group">
+        <label asp-for="@Model.AppointmentDate"></label>
+        <input type="datetime-local" asp-for="@Model.AppointmentDate" class="form-control" />
+    </div>
+     <div class="form-group">
+        <label asp-for="@Model.AppointmentStatus"></label>
+        <input asp-for="@Model.AppointmentStatus" class="form-control" readonly/>
+    </div>
+        <div class="form-group">
+        <h5 class="text-success">@Model.SuccessMessage</h5>
+        <h5 class="text-danger">@Model.ErrorMessage</h5>
+        <h5 class="text-danger">@Html.ValidationSummary()</h5>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-success ">Book</button>
+        <a href="/Index" class="btn btn-light" role="button">Back</a>
+    </div>
+
+</form>
+
+
+

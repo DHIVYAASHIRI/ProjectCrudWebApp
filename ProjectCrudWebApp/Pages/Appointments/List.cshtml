@@ -1,0 +1,71 @@
+﻿@page
+@model ProjectCrudWebApp.Pages.Appointments.ListModel
+@{
+}
+
+<form method="post" class="shadow">
+    <div class="row">
+        <div class="col-sm-10"><h3>Appointments</h3></div>
+                      
+        
+    </div>
+    <br /> 
+    <div class="form-group">
+        <h6 class="text-success">@Model.SuccessMessage</h6>
+        <h6 class="text-danger">@Model.ErrorMessage</h6>
+        <h5 class="text-danger">@Html.ValidationSummary()</h5>
+    </div>
+    <br />
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">AppointmentDate</th>
+                <th scope="col">AppointmentStatus</th>
+                <th scope="col">UniqueId</th>
+                <th scope="col">PatientName</th>
+                <th scope="col">DoctorId</th>
+                <th scope="col">DoctorName</th>
+                <th scope="col">Revoke or Edit Appointments</th>
+           </tr>
+        </thead>
+        <tbody>
+            @if(Model.Appointments==null && Model.Appointments.Count <= 0)
+            {
+                <div>No appointments found</div>
+            }
+            @foreach (var d in Model.Appointments)
+            {
+                <tr>
+                    <td>@d.Id</td>
+                    
+                    <td>@d.AppointmentDate</td>
+                    <td>@d.AppointmentStatus</td>
+                    
+                    <td>@d.PatientId</td>
+                    <td>@d.Name</td>
+                    <td>@d.DoctorId</td>
+                    <td>@d.DoctorName</td>
+                    
+                   
+                    <td>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a href="/Appointments/Edit/@d.Id" class="btn btn-outline-warning" role="button">
+                                <i class="fa fa-edit"></i>Manage Appointments
+                            </a>
+                        }
+                        @if (User.IsInRole("User"))
+                        {
+                            <a href="/Appointments/Delete/@d.Id" class="btn btn-outline-danger" role="button">
+                                <i class="fa fa-trash-can">Cancel Appointment</i>
+                            </a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>

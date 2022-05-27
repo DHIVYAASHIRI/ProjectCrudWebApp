@@ -1,0 +1,87 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+
+<form method="post">
+    <div class="text-center">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <h5 class="display-4">Welcome @User.Identity.Name</h5>
+        }   
+        else
+        {
+            <h3> Welcome To DIGITAL HEALTH </h3>
+            <h4>Already Have An Account? <a href="/Login">Login</a></h4>
+            <h4>New User? Register Here! <a href="/Register">Register</a></h4>
+        }
+           @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+        { 
+           <h2>Making Health Care Better Together!</h2>
+           <p>Book Your Appointments Now. Reach Out To Us! We Will Connect You To The Best Doctors!</p>
+            
+            <div class="col-sm-2">
+             
+                <a href="/Appointments/Add" class="btn btn-success rounded-pill" role="button">
+                  
+                    Book Appointments
+                </a>
+            </div>
+           
+            <button type="submit" class="btn btn-danger">
+                <i class="fa fa-sign-out"></i> Logout
+            </button>
+             <div class="col-sm-2">
+             
+                <a href="/Appointments/List" class="btn btn-success rounded-pill order-xxl-last" role="button">
+                  
+                    My Appointments
+                </a>
+            </div>
+            
+        }
+        
+        
+    
+</form>
+ @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+        {
+<div class="row">
+    <div class="col-md-4 col-xl-4">
+        <div class="card bg-c-blue db-card">
+            <div class="card-block">
+                <h6 class="m-b-20">Doctors</h6>
+                <h2 class="text-end"><i class="fa fa-person float-start"></i><span>@Model.DoctorCount</span></h2>
+                <p class="m-b-0">Available Doctors <span class="f-right"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-xl-4">
+        <div class="card bg-c-green db-card">
+            <div class="card-block">
+                <h6 class="m-b-20"> Patients</h6>
+                <h2 class="text-end"><i class="fa fa-person float-start"></i><span>@Model.PatientCount</span></h2>
+                <p class="m-b-0">Registered Patients<span class="float-end"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-xl-4">
+        <div class="card bg-c-pink db-card">
+            <div class="card-block">
+                <h6 class="m-b-20">Appointments</h6>
+                <h2 class="text-end"><i class="fa fa-calendar float-start"></i><span>@Model.AppointmentCount</span></h2>
+                  <p class="m-b-0">Total Appointments<span class="float-end"></span></p>
+           
+            </div>
+        </div>
+    </div>
+</div>
+ <button type="submit" class="btn btn-danger">
+                <i class="fa fa-sign-out"></i> Logout
+            </button>
+}
